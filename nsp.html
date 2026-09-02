@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- TEMPLATE: swap the title for the real project name -->
+<title>NSP Mobile App — Nuala Kennedy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="grid-overlay" id="gridOverlay" aria-hidden="true">
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html#top" class="wordmark"><span class="sq"></span>Nuala Kennedy</a>
+    <nav class="primary-nav">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+
+    <!-- ============ HEADER ============ -->
+    <!-- Swap the eyebrow, title, tags, and the four meta values for each project. -->
+    <section class="project-header">
+      <a class="back-link" href="work.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 7L7 17M17 17H7V7"/></svg>
+        Back to all work
+      </a>
+      <p class="eyebrow"><span class="bar"></span>CASE STUDY — [PRODUCT / UX DESIGN]</p>
+      <h1 class="project-title">NSP Mobile — <em>National Ski Patrol brought to mobile</em></h1>
+
+      <div class="tags">
+        <span>UX Research</span>
+        <span>UI Design</span>
+        <span>Prototyping</span>
+        <span>Figma</span>
+      </div>
+
+      <div class="project-meta">
+        <div>
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Product Designer</span>
+        </div>
+        <div>
+          <span class="meta-label">Timeline</span>
+          <span class="meta-value">Feb - Apr 2026</span>
+        </div>
+        <div>
+          <span class="meta-label">Team</span>
+          <span class="meta-value">Solo</span>
+        </div>
+        <div>
+          <span class="meta-label">Tools</span>
+          <span class="meta-value">Figma, Figma Make, Claude</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PREVIEW ============ -->
+    <!-- Two or three sentences that summarize the project, then one hero image. -->
+    <section class="project-summary">
+      <p>NSP promotes and ensures outdoor safety in ski areas and on bike trails around the world. Their current website features information such as the history of NSP, how to join or donate, ski safety, programs/events, and information for current members. Currently, there is no mobile app version of the site. This limits NSP’s social reach and easy access.</p>
+        <p>Through this project, I aimed to fix this issue. Through AI iteration, experimenting, and high-fidelity prototyping, I created this mock app to serve as NSP’s mobile interface. </p>
+      <div class="project-hero">
+        <img src="images/NSP_Hero.png" alt="Hand holding a phone wih the screen showing a NSP app.">
+      </div>
+      <span class="project-hero-caption">Final high-fidelity screens</span>
+
+      <div class="btn-center">
+        <a class="btn-outline" href="https://www.figma.com/proto/Gm028hwIzlLqcP4qfzhsbw/Ski-Patrol-Mobile-App-Project--611-?node-id=314-7943&starting-point-node-id=314%3A7943&t=ABQDx6LIQ1HTkeiL-1" target="_blank" rel="noopener">
+          View interactive prototype
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <!-- Duplicate a .process-block for any extra stage a project needs. -->
+    <section id="process">
+      <div class="section-head">
+        <h2>The Process</h2>
+        <span class="section-tag">How it came together</span>
+      </div>
+
+      <div class="process-block">
+        <span class="block-index">01 — Problem Statement</span>
+        <h3>National Ski Patrol doesn't currently have a mobile version of their website.</h3>
+        <p>As the NSP community grows and modernizes, it becomes essential that members and interested parties can easily access info such as slope safety, programs, news, and more. Without a mobile app to access these things, NSP members miss out on vital information that is designed to save lives. </p>
+      </div>
+
+      <div class="process-block">
+        <span class="block-index">02 — User needs</span>
+        <h3>User Needs and Concerns</h3>
+        <ul class="pain-point-list">
+          <li>
+            <h4>Access to Organizational Information</h4>
+            <p>Both prospective and current members need clear, accessible information about NSP, including membership expectations, organizational history, and potential impact.</p>
+          </li>
+          <li>
+            <h4>Unified Mobile Experience</h4>
+            <p>Users require a streamlined mobile platform to manage their involvement, including tracking training progress and maintaining membership information efficiently.</p>
+          </li>
+          <li>
+            <h4>Progress Tracking</h4>
+            <p>Members need visibility into their training journey, with clear indicators of completed courses and remaining requirements to support ongoing development.</p>
+          </li>
+          <li>
+            <h4>Simple Navigation</h4>
+            <p>Users need an intuitive, easy-to-navigate experience that allows them to quickly find important information and access key features without unnecessary steps.</p>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="process-block">
+        <span class="block-index">03 — Design Decisions</span>
+        <h3>Design Decisions</h3>
+
+        <div class="design-decision">
+          <div class="decision-text">
+            <h4>NSP Branding</h4>
+            <p>To ensure consistency and familiarity, the mobile experience aligns closely with NSP’s existing branding. This allows users to transition seamlessly between platforms while maintaining trust and recognition.</p>
+          </div>
+          <div class="process-image">
+            <img src="images/NSP_Branding.png" alt="[Describe what this image shows]">
+          </div>
+        </div>
+
+        <div class="design-decision">
+          <div class="decision-text">
+            <h4>Education-first Approach</h4>
+            <p>As an organization rooted in safety and training, NSP emphasizes education. The app highlights comprehensive organizational information alongside dedicated access to courses and training opportunities for members.</p>
+          </div>
+          <div class="process-image">
+            <img src="images/NSP_Education.png" alt="[Describe what this image shows]">
+          </div>
+        </div>
+
+        <div class="design-decision">
+          <div class="decision-text">
+            <h4>Welcoming Language</h4>
+            <p>NSP prioritizes recruitment and community growth. The app uses clear, approachable language to create an inclusive experience that encourages engagement from first-time users.</p>
+          </div>
+          <div class="process-image">
+            <img src="images/NSP_Members.png" alt="[Describe what this image shows]">
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ============ Building the app ============ -->
+    <section id="process">
+      <div class="section-head">
+        <h2>Building</h2>
+        <span class="section-tag">Creating the prototype</span>
+      </div>
+
+
+        <div class="design-decision">
+          <div class="decision-text">
+            <h4>01 - Visual Identity</h4>
+            <p>Drawing inspiration from the existing NSP website, I developed a visual identity for the mobile experience that maintains the organization’s established brand while adapting it for a modern, mobile-first interface. Oswald serves as the primary typeface, paired with Arial for supporting content, creating a bold, clear, and straightforward aesthetic. I also sampled the website’s existing color palette to establish a cohesive foundation and expanded it to support the app’s interface and functionality.</p>
+          </div>
+            <div class="process-image">
+            <img src="images/NSP_Assets.png" alt="[Describe what this image shows]">
+          </div>
+        </div>
+
+
+        <div class="design-decision">
+          <div class="decision-text">
+            <h4>02 - Assets & Components</h4>
+            <p>With the visual identity established, I began building the foundational components of the app. From buttons and navigation elements to imagery and supporting visuals, I developed more than 200 reusable interaction components to create a cohesive and scalable design system.</p>
+          </div>
+        </div>
+
+        <div class="design-decision">
+          <div class="decision-text">
+            <h4>03 - High-Fidelity Designs</h4>
+            <p>Using the component library I developed, I was able to efficiently assemble high-fidelity screens and bring the final prototype to life. The completed experience includes more than 100 interactive touchpoints, combining instant and animated interactions to create a cohesive user experience.</p>
+          </div>
+        </div>
+
+        <div class="btn-center">
+         <a class="btn-outline" href="https://www.figma.com/design/Gm028hwIzlLqcP4qfzhsbw/Ski-Patrol-Mobile-App-Project--611-?node-id=0-1&t=wENAIcZRr8s0omBy-1" target="_blank" rel="noopener">
+           Check Out My Figma Files
+           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+         </a>
+        </div>
+      </div>
+
+
+    <!-- ============ FINAL PRODUCT ============ -->
+    <!-- Add or remove images from the gallery as needed — it reflows automatically. -->
+    <section id="final-product">
+      <div class="section-head">
+        <h2>The Final Product</h2>
+        <span class="section-tag">See it in action</span>
+      </div>
+
+      <p class="final-product-text">[Short summary of the finished product — what it
+        looks like, how it works, and the outcome it delivered.]</p>
+
+        <div class="figma-embed">
+          <iframe
+            src="https://embed.figma.com/proto/Gm028hwIzlLqcP4qfzhsbw/Ski-Patrol-Mobile-App-Project--611-?node-id=314-7943&starting-point-node-id=314%3A7943&embed-host=share"
+            allowfullscreen
+            loading="lazy"
+            title="NSP mobile app — interactive Figma prototype">
+          </iframe>
+        </div>
+        <span class="project-hero-caption figma-embed-caption">Interactive prototype — click through to explore</span>
+
+      <div class="final-product-gallery">
+        <div class="process-image">
+          <img src="images/project-final-1.jpg" alt="[Describe what this image shows]">
+        </div>
+        <div class="process-image">
+          <img src="images/project-final-2.jpg" alt="[Describe what this image shows]">
+        </div>
+        <div class="process-image">
+          <img src="images/project-final-3.jpg" alt="[Describe what this image shows]">
+        </div>
+      </div>
+
+      <div class="btn-center">
+      <a class="btn-outline" href="https://www.figma.com/proto/Gm028hwIzlLqcP4qfzhsbw/Ski-Patrol-Mobile-App-Project--611-?node-id=314-7943&starting-point-node-id=314%3A7943&t=ABQDx6LIQ1HTkeiL-1" target="_blank" rel="noopener">
+        View interactive prototype
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+    </section>
+
+
+    <!-- ============ LEARNING OUTCOMES ============ -->
+    <!-- Add or remove cards from the grid as needed — it reflows automatically. -->
+    <section id="outcomes">
+      <div class="section-head">
+        <h2>Learning Outcomes</h2>
+        <span class="section-tag">What I'd carry forward</span>
+      </div>
+      <div class="outcomes-grid">
+        <div>
+          <h4>[Outcome one]</h4>
+          <p>[What this project taught, specifically — a skill, a working method,
+            or a lesson about a design decision that didn't land the first time.]</p>
+        </div>
+        <div>
+          <h4>[Outcome two]</h4>
+          <p>[What this project taught, specifically.]</p>
+        </div>
+        <div>
+          <h4>[Outcome three]</h4>
+          <p>[What this project taught, specifically.]</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="more-work">
+      <p>Curious about another project?</p>
+      <a class="btn-outline" href="work.html">
+        View all work
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+  <footer id="contact">
+    <div class="wrap">
+      <div class="contact-inner">
+        <div>
+          <h2>Want to know more? <em>Let's talk!</em></h2>
+          <a class="mail-link" href="mailto:nkenn7@gmail.com">
+            nkenn7@gmail.com
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+          <p> +1 313-333-0914</p>
+        </div>
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/nualakenn721/">LinkedIn</a>
+          <a href="#">Instagram</a>
+          <a href="#">Github</a>
+        </div>
+      </div>
+      <div class="foot-meta">
+        <span>2026</span>
+        <span>nualakenn7@gmail.com | +1 313-333-0914</span>
+      </div>
+    </div>
+  </footer>
+</main>
+
+</body>
+</html>

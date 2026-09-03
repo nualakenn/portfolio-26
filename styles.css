@@ -292,6 +292,74 @@
     overflow: hidden;
   }
   .case-frame svg{ width:100%; height:100%; display:block; }
+  .case-frame a{ display:block; width:100%; height:100%; }
+  .case-frame img{ width:100%; height:100%; object-fit: cover; display:block; cursor: zoom-in; }
+  /* Modifier: crop in tighter than the default cover fit, for photos
+     with too much surrounding space at the default zoom level. */
+  .case-frame--zoom img{ transform: scale(1.25); transform-origin: center; }
+  /* Lighter modifier for images where the default zoom crops too
+     tightly and cuts off important content (e.g. UI screens). */
+  .case-frame--zoom-sm img{ transform: scale(1.08); transform-origin: center; }
+
+  /* ===== Lightbox: click an image to enlarge it, click again (or move
+     the cursor over it) to zoom in and read details up close. ===== */
+  .lightbox{
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    background: rgba(12,12,16,0.92);
+  }
+  .lightbox.active{ display: flex; }
+  body.lightbox-open{ overflow: hidden; }
+  .lightbox img{
+    display: block;
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 6px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    cursor: zoom-in;
+    transform-origin: center center;
+    transition: transform .2s ease;
+  }
+  .lightbox img.zoomed{
+    cursor: zoom-out;
+    transform: scale(2.2);
+  }
+  .lightbox-close{
+    position: fixed;
+    top: 24px;
+    right: 28px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.28);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  .lightbox-close:hover{ background: rgba(255,255,255,0.14); }
+  .lightbox-hint{
+    position: fixed;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    z-index: 1000;
+  }
 
   .case-label{
     position:absolute;
@@ -390,6 +458,15 @@
     margin-top: 8px;
     text-align: center;
   }
+  /* Modifier: for more-work blocks nested inside a narrower column
+     (e.g. under the Experience list) rather than spanning full width. */
+  .more-work.compact{
+    align-items: center;
+    text-align: center;
+    padding-top: 48px;
+    padding-bottom: 64px;
+    margin-top: 0;
+  }
   .more-work p{
     font-family: var(--font-mono);
     font-size: 11.5px;
@@ -474,12 +551,11 @@
 
   /* ============ TOOLKIT ============ */
   .toolkit{
-    grid-column: 1 / -1;
     display: grid;
     grid-template-columns: 160px 1fr;
     gap: 24px;
-    margin-top: 56px;
-    padding-top: 40px;
+    margin-top: 40px;
+    padding-top: 28px;
     border-top: 1px solid var(--line);
   }
   @media (max-width: 640px){
@@ -588,8 +664,12 @@
 
   /* ============ MORE-WORK INDEX PAGE ============ */
   .page-head{
-    padding: clamp(72px, 14vw, 140px) 0 clamp(48px, 8vw, 80px);
+    padding: clamp(72px, 14vw, 140px) 0 clamp(24px, 4vw, 40px);
   }
+  /* The section right after a page-head already gets its own top
+     padding from .page-head's bottom padding — cancel the generic
+     section top padding here so the two don't stack into a big gap. */
+  .page-head + section{ padding-top: 0; }
   .page-head .eyebrow{ margin-bottom: 32px; }
   .page-head h1{
     font-family: var(--font-display);
@@ -597,7 +677,7 @@
     font-size: clamp(2.2rem, 5.6vw, 4rem);
     margin: 0 0 24px;
     line-height: 1.08;
-    max-width: 18ch;
+    max-width: none;
     color: var(--ink);
   }
   .page-head h1 em{ font-style: italic; font-weight: 500; color: var(--accent); }
@@ -672,97 +752,6 @@
     .archive-arrow{ display:none; }
   }
 
-  /* ============ ARCHIVE LIST — WITH PREVIEW IMAGES ============ */
-  .archive-feature-list{ list-style:none; margin:0; padding: 24px 0 0; }
-  .archive-feature-list > li{ border-top: 1px solid var(--line); }
-  .archive-feature-list > li:last-child{ border-bottom: 1px solid var(--line); }
-
-  .archive-feature{
-    display:block;
-    text-decoration:none;
-    color: var(--ink);
-    padding: 48px 0;
-  }
-
-  .archive-feature-frame{
-    position: relative;
-    aspect-ratio: 21/9;
-    border: none;
-    border-radius: 14px;
-    background: var(--paper-raised);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.09);
-    overflow: hidden;
-    margin-bottom: 24px;
-  }
-  .archive-feature-frame img{
-    width:100%; height:100%;
-    object-fit: cover;
-    display:block;
-    transition: transform .5s ease;
-  }
-  .archive-feature:hover .archive-feature-frame img{ transform: scale(1.035); }
-
-  .archive-feature-idx,
-  .archive-feature-year-tag{
-    position:absolute;
-    top: 14px;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.05em;
-    background: var(--paper-raised);
-    color: var(--ink-soft);
-    border: 1px solid var(--line);
-    padding: 4px 9px;
-  }
-  .archive-feature-idx{ left: 14px; }
-  .archive-feature-year-tag{ right: 14px; }
-
-  .archive-feature-scrim{
-    position:absolute;
-    left:0; right:0; bottom:0;
-    padding: 40px 28px 22px;
-    background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.4) 55%, rgba(0,0,0,0) 100%);
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    gap: 20px;
-    transition: background .25s ease;
-  }
-  .archive-feature:hover .archive-feature-scrim{
-    background: linear-gradient(to top, var(--overlay-grey) 0%, rgba(0,0,0,0.62) 55%, rgba(0,0,0,0) 100%);
-  }
-  .archive-feature-heading{ min-width:0; }
-  .archive-feature-title{
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(1.3rem, 2.6vw, 2rem);
-    line-height: 1.2;
-    margin: 0 0 10px;
-    color: #FFFFFF;
-    transition: color .15s ease;
-  }
-  .archive-feature:hover .archive-feature-title{ color: #FFFFFF; }
-  .archive-feature-tags{
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.72);
-  }
-  .archive-feature-arrow{
-    width:16px; height:16px;
-    flex-shrink:0;
-    color:#FFFFFF;
-    transition: transform .15s ease, color .15s ease;
-  }
-  .archive-feature:hover .archive-feature-arrow{ transform: translate(3px,-3px); color: #FFFFFF; }
-
-  @media (max-width: 700px){
-    .archive-feature{ padding: 32px 0; }
-    .archive-feature-frame{ aspect-ratio: 4/3; }
-    .archive-feature-scrim{ padding: 28px 18px 16px; }
-    .archive-feature-arrow{ display:none; }
-  }
 
   /* ============ PROJECT TEMPLATE ============ */
   .project-header{
@@ -826,11 +815,34 @@
     letter-spacing: 0.03em;
     color: var(--ink-faint);
   }
+  /* A single supporting image centered within a section, narrower than
+     full width — used to break up text without spanning the whole page. */
+  .section-image{
+    max-width: 640px;
+    margin: 40px auto 0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.09);
+  }
+  .section-image img{ width: 100%; height: auto; display: block; }
+  .section-image-caption{
+    display: block;
+    max-width: 640px;
+    margin: 12px auto 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--ink-faint);
+  }
   .btn-center{
     display: flex;
     justify-content: center;
     margin-top: 32px;
   }
+  /* Utility: extra breathing room below a centered button — for cases
+     where a divider or a new content block follows immediately after. */
+  .btn-center.spacer-bottom{ margin-bottom: 40px; }
 
   /* ============ PROJECT PROCESS ============ */
 
@@ -862,6 +874,7 @@
   .process-block p:last-of-type{ margin-bottom: 0; }
   .process-block.wide-text p{ max-width: none; }
 
+  .process-block .tags{ margin-top: 20px; }
   .pain-point-list{
     list-style: none;
     margin: 28px 0 0;
@@ -886,6 +899,22 @@
     max-width: none;
   }
 
+  /* Sub-bullets inside a pain-point-list card — used to break up a run
+     of short lines instead of packing them into one paragraph. */
+  .pain-point-list li ul.sub-list{
+    list-style: disc;
+    margin: 0;
+    padding-left: 1.1em;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+  }
+  .pain-point-list li ul.sub-list li{
+    padding-top: 0;
+    border-top: none;
+    margin-bottom: 6px;
+  }
+  .pain-point-list li ul.sub-list li:last-child{ margin-bottom: 0; }
+
   .process-image{
     aspect-ratio: 16/9;
     border: none;
@@ -909,6 +938,30 @@
   .process-image-row .process-image{ margin: 0; }
   @media (max-width: 700px){
     .process-image-row{ grid-template-columns: 1fr; }
+  }
+
+  /* Modifier: show paired images at full, uncropped size with a visible
+     caption underneath each one, instead of the cropped fixed-ratio frame. */
+  .process-image-row.no-crop .process-image{
+    aspect-ratio: auto;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+  .process-image-row.no-crop .process-image img{
+    width: 100%;
+    height: auto;
+    object-fit: initial;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.09);
+  }
+  .process-image-caption{
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--ink-faint);
+    margin-top: 12px;
   }
 
   /* ============ PERSONAS ============ */
@@ -1083,6 +1136,50 @@
     .figma-embed{ max-width: 320px; }
   }
 
+  /* Fallback for prototypes that can't be embedded live (Figma blocks
+     iframe embedding of Figma Make files) — a clickable preview card
+     that opens the real prototype in a new tab instead of showing a
+     blank/broken iframe. */
+  .figma-embed-fallback{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .figma-embed-fallback img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .figma-embed-fallback .figma-embed-play{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+    padding: 24px;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1) 45%, rgba(0,0,0,0.35));
+    color: #FFFFFF;
+    transition: background .2s ease;
+  }
+  .figma-embed-fallback:hover .figma-embed-play{
+    background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.2) 45%, rgba(0,0,0,0.45));
+  }
+  .figma-embed-play svg{
+    width: 38px;
+    height: 38px;
+  }
+  .figma-embed-play span{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
   /* ============ FINAL PRODUCT ============ */
   .final-product-text{
     color: var(--ink-soft);
@@ -1111,6 +1208,21 @@
   .final-product-gallery::-webkit-scrollbar-track{ background: transparent; }
 
   /* ============ LEARNING OUTCOMES ============ */
+  /* Row layout: intro paragraph on the left, a call-to-action button
+     aligned to its right, instead of the button stacking underneath. */
+  .outcomes-lead{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 8px;
+  }
+  .outcomes-lead .final-product-text{ margin-bottom: 0; }
+  .outcomes-lead .btn-outline{ flex-shrink: 0; }
+  @media (max-width: 700px){
+    .outcomes-lead{ flex-direction: column; align-items: flex-start; gap: 20px; }
+  }
+
   .outcomes-grid{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1119,6 +1231,10 @@
   }
   @media (max-width: 860px){ .outcomes-grid{ grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px){ .outcomes-grid{ grid-template-columns: 1fr; } }
+  /* Modifier for outcome sections with only two cards — stretches them
+     across the full row instead of leaving a leftover empty column. */
+  .outcomes-grid.cols-2{ grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 560px){ .outcomes-grid.cols-2{ grid-template-columns: 1fr; } }
   .outcomes-grid div{ padding-top: 24px; border-top: 1px solid var(--line); }
   .outcomes-grid h4{
     font-family: var(--font-display);

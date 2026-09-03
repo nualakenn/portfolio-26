@@ -47,18 +47,20 @@
 
     <section id="work">
       <div class="section-head">
-        <h2>Recent Projects</h2>
-        <span class="section-tag">Projects — 2024–2026</span>
+        <h2>Spotlighted Projects</h2>
+        <span class="section-tag">Projects — 2025–2026</span>
       </div>
 
       <!-- CASE 1 -->
       <article class="case">
         <div class="case-frame">
-          <img src="images/NSP_handdisplay.png" alt="NSP Mobile App — National Ski Patrol's website brought to mobile">
+          <a href="nsp.html" aria-label="View full NSP project">
+            <img src="images/NSP_hand.png" alt="NSP Mobile App — National Ski Patrol's website brought to mobile">
+          </a>
         </div>
         <div class="case-body">
           <h3>NSP Mobile App — National Ski Patrol's website brought to mobile </h3>
-          <span class="case-role">Product Designer · 3-month engagement</span>
+          <span class="case-role">Product Designer · 2-month engagement</span>
           <p class="case-desc">This mobile app brings NSP’s key resources, safety information, programs, and member tools together in one accessible experience—putting outdoor safety at your fingertips.</p>
           <div class="tags"><span>UX Research</span><span>UI Design</span><span>Prototyping</span><span>Figma</span></div>
           <a class="case-link" href="nsp.html" aria-label="View full NSP project">View full project
@@ -70,7 +72,9 @@
       <!-- CASE 2 -->
       <article class="case">
         <div class="case-frame">
-          <img src="images/UM_Cover.png" alt="Big House Pass — A mobile app for VIP U of M Football fans">
+          <a href="um.html" aria-label="View full Umich project">
+            <img src="images/UM_Cover.png" alt="Big House Pass — A mobile app for VIP U of M Football fans">
+          </a>
         </div>
         <div class="case-body">
           <h3>Big House Pass — A mobile app for VIP U of M Football fans</h3>
@@ -85,13 +89,15 @@
 
       <!-- CASE 3 -->
       <article class="case">
-        <div class="case-frame">
-          <img src="images/WB_Girl.png" alt="Wall Ball — An augmented reality (AR) game design pitch">
+        <div class="case-frame case-frame--zoom">
+          <a href="wallball.html" aria-label="View full Wall Ball project">
+            <img src="images/WB_Girl.png" alt="Wall Ball — An augmented reality (AR) game design pitch">
+          </a>
         </div>
         <div class="case-body">
           <h3>Wall Ball — An augmented reality (AR) game design pitch</h3>
           <span class="case-role">UX Researcher · 2-week engagement</span>
-          <p class="case-desc">Hospital stays can feel isolating, especially for children who are cut off from friends, outdoor recess play, and and normal daily routines. Wall Ball transforms these limitations into opportunities for movement, creativity, and connection.</p>
+          <p class="case-desc">Hospital stays can feel isolating, especially for children who are cut off from friends, outdoor recess play, and normal daily routines. Wall Ball transforms these limitations into opportunities for movement, creativity, and connection.</p>
           <div class="tags"><span>UX Design </span><span>VR/AR Design</span><span>Figma</span><span>Accessibility</span></div>
           <a class="case-link" href="wallball.html" aria-label="View full Wall Ball project">View full project
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
@@ -127,6 +133,18 @@
           <p>As I continue with my studies, I aim to deepen my expertise in user-centered design and drive 
             innovative solutions. My background in design, marketing, and user experience reflects a commitment 
             to creating meaningful and engaging designs.</p>
+
+          <div class="toolkit">
+            <span class="toolkit-label">Toolkit</span>
+            <ul class="toolkit-list">
+              <li>Figma</li>
+              <li>Adobe Illustrator</li>
+              <li>Adobe Photoshop</li>
+              <li>AI Tools</li>
+              <li>HTML / CSS</li>
+              <li>Python</li>
+            </ul>
+          </div>
         </div>
         <div id="experience">
           <ul class="experience-list">
@@ -163,27 +181,15 @@
               </div>
             </li>
           </ul>
-        </div>
 
-        <div class="toolkit">
-          <span class="toolkit-label">Toolkit</span>
-          <ul class="toolkit-list">
-            <li>Figma</li>
-            <li>Adobe Illustrator</li>
-            <li>Adobe Photoshop</li>
-            <li>AI Tools</li>
-            <li>HTML / CSS</li>
-            <li>Python</li>
-          </ul>
+          <div class="more-work compact">
+            <p>Want the full breakdown?</p>
+            <a class="btn-outline" href="attachments/NualaK_resume.pdf" download>
+              Download resume
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
         </div>
-      </div>
-
-      <div class="more-work">
-        <p>Want the full breakdown?</p>
-        <a class="btn-outline" href="attachments/NualaK_resume.pdf" download>
-          Download resume
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-        </a>
       </div>
 
     </section>
@@ -204,7 +210,7 @@
         <div class="socials">
           <a href="https://www.linkedin.com/in/nualakenn721/">LinkedIn</a>
           <a href="#">Instagram</a>
-          <a href="#">Github</a>
+          <a href="#">GitHub</a>
         </div>
       </div>
       <div class="foot-meta">
@@ -214,6 +220,63 @@
     </div>
   </footer>
 </main>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close enlarged image">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+  <span class="lightbox-hint">Click image to zoom in</span>
+</div>
+
+<script>
+  (function(){
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightboxImg');
+    var closeBtn = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt){
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightboxImg.classList.remove('zoomed');
+      lightbox.classList.add('active');
+      document.body.classList.add('lightbox-open');
+    }
+    function closeLightbox(){
+      lightbox.classList.remove('active');
+      lightboxImg.classList.remove('zoomed');
+      document.body.classList.remove('lightbox-open');
+    }
+
+    document.querySelectorAll('.case-frame img').forEach(function(img){
+      img.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        openLightbox(this.src, this.alt);
+      });
+    });
+
+    lightboxImg.addEventListener('click', function(e){
+      e.stopPropagation();
+      this.classList.toggle('zoomed');
+    });
+
+    lightboxImg.addEventListener('mousemove', function(e){
+      if(!this.classList.contains('zoomed')) return;
+      var rect = this.getBoundingClientRect();
+      var x = ((e.clientX - rect.left) / rect.width) * 100;
+      var y = ((e.clientY - rect.top) / rect.height) * 100;
+      this.style.transformOrigin = x + '% ' + y + '%';
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e){
+      if(e.target === lightbox){ closeLightbox(); }
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){ closeLightbox(); }
+    });
+  })();
+</script>
+
 
 
 

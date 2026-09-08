@@ -915,6 +915,61 @@
   }
   .pain-point-list li ul.sub-list li:last-child{ margin-bottom: 0; }
 
+  /* Simple inline bullet list that matches body copy styling — used where
+     bullets should read as a continuation of the paragraph (e.g. the
+     Problem Statement) rather than a separate card component like
+     .pain-point-list. */
+  .flow-list{
+    list-style: disc;
+    margin: 0 0 20px;
+    padding-left: 1.3em;
+    color: var(--ink-soft);
+    max-width: 68ch;
+  }
+  .process-block.wide-text .flow-list{ max-width: none; }
+  .flow-list li{
+    margin-bottom: 8px;
+    padding: 0;
+    border: none;
+  }
+  .flow-list li:last-child{ margin-bottom: 0; }
+
+  /* Places two process-blocks side by side as columns instead of
+     stacking them — used where two short, related stages (e.g.
+     Literature Reviews / Thematic Analysis) read better as a pair.
+     The divider and top padding live on the row itself so both columns
+     start flush with each other, instead of each block carrying its
+     own border-top (which the :first-child rule would strip from only
+     the left-hand column). */
+  .process-block-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    padding: 56px 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  @media (max-width: 700px){
+    .process-block-row{ grid-template-columns: 1fr; }
+  }
+  .process-block-row .process-block{
+    padding: 0;
+    border-top: none;
+  }
+
+  /* Grey rounded callout for the recommendation line inside each Key
+     Finding card — same text size as the finding above it, set apart
+     with a soft background instead of a border. */
+  .pain-point-list .finding-highlight{
+    display: block;
+    margin: 14px 0 0;
+    padding: 12px 16px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 10px;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+  }
+
   .process-image{
     aspect-ratio: 16/9;
     border: none;
@@ -924,7 +979,44 @@
     overflow: hidden;
     margin: 28px 0;
   }
-  .process-image img{ width:100%; height:100%; object-fit: cover; display:block; }
+  .process-image img{ width:100%; height:100%; object-fit: cover; display:block; cursor: zoom-in; }
+
+  /* "A Closer Look" layout — a 2-column grid where both paragraphs sit
+     in the first row and both images sit in the second row, so the two
+     images stay level with each other regardless of how long either
+     paragraph runs. Images are bigger and uncropped. */
+  .closer-look-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row;
+    gap: 20px 40px;
+    margin-top: 20px;
+    align-items: start;
+  }
+  @media (max-width: 700px){
+    .closer-look-grid{ grid-template-columns: 1fr; }
+  }
+  .closer-look-grid > p{
+    color: var(--ink-soft);
+    max-width: none;
+    margin: 0;
+  }
+  .closer-look-image-wrap{ margin: 0; }
+  .closer-look-image{
+    aspect-ratio: auto;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+    margin: 0;
+  }
+  .closer-look-image img{
+    width: 100%;
+    height: auto;
+    object-fit: initial;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.09);
+  }
+  .process-image-caption.caption-center{ text-align: center; }
 
   /* Smaller, side-by-side pair of images within a process block —
      keeps full-width copy above and both images visible together
@@ -1099,6 +1191,17 @@
     overflow: hidden;
     margin: 28px 0 0;
   }
+  /* When the embed holds a plain image (like an animated gif) instead of a
+     video/iframe, drop the fixed 16:9 box and let the container size itself
+     to the image's real dimensions, so nothing is cropped or letterboxed. */
+  .video-embed:has(img){
+    aspect-ratio: auto;
+  }
+  .video-embed img{
+    width: 100%;
+    height: auto;
+    display: block;
+  }
   .video-embed iframe,
   .video-embed video{
     width: 100%;
@@ -1228,6 +1331,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 20px 40px;
     margin-top: 8px;
+    margin-bottom: 48px;
   }
   @media (max-width: 860px){ .outcomes-grid{ grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px){ .outcomes-grid{ grid-template-columns: 1fr; } }
